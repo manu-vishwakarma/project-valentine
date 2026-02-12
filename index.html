@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -205,7 +206,7 @@
 
     <!-- Background Music -->
     <audio id="bgMusic" loop>
-        <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_4a468ed3f6.mp3" type="audio/mpeg">
+        <source src="background-music.mp3" type="audio/mpeg">
     </audio>
 
     <!-- Music Control Button -->
@@ -253,6 +254,11 @@
         yesBtn.addEventListener('click', function() {
             questionPage.style.display = 'none';
             lovePage.style.display = 'block';
+            
+            // Start playing music when Yes is clicked
+            bgMusic.play();
+            isPlaying = true;
+            musicToggle.textContent = '🔊';
         });
 
         // When mouse gets near No button, move it away
@@ -291,15 +297,6 @@
         const bgMusic = document.getElementById('bgMusic');
         const musicToggle = document.getElementById('musicToggle');
         let isPlaying = false;
-
-        // Auto-play music when page loads (with user interaction)
-        document.body.addEventListener('click', function() {
-            if (!isPlaying) {
-                bgMusic.play();
-                isPlaying = true;
-                musicToggle.textContent = '🔊';
-            }
-        }, { once: true });
 
         // Toggle music on/off
         musicToggle.addEventListener('click', function(e) {
