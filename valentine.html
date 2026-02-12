@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Valentine? 💕</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff6b9d 0%, #c06c84 50%, #f67280 100%);
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Floating hearts animation */
+        .heart {
+            position: absolute;
+            font-size: 30px;
+            animation: float 15s infinite;
+            opacity: 0.6;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 60px 50px;
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 600px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .love-page {
+            display: none;
+        }
+
+        h1 {
+            color: #d63447;
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .heart-icon {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        p {
+            color: #555;
+            font-size: 24px;
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin-top: 30px;
+            position: relative;
+            height: 80px;
+        }
+
+        button {
+            padding: 18px 50px;
+            font-size: 24px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-family: 'Georgia', serif;
+        }
+
+        #yesBtn {
+            background: linear-gradient(135deg, #ff6b9d, #d63447);
+            color: white;
+            box-shadow: 0 5px 15px rgba(214, 52, 71, 0.4);
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(214, 52, 71, 0.6);
+        }
+
+        #noBtn {
+            background: linear-gradient(135deg, #e0e0e0, #bdbdbd);
+            color: #666;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: absolute;
+        }
+
+        .love-message {
+            font-size: 32px;
+            color: #d63447;
+            font-weight: bold;
+            margin: 30px 0;
+            line-height: 1.8;
+        }
+
+        .thank-you {
+            font-size: 22px;
+            color: #666;
+            font-style: italic;
+        }
+
+        .celebration {
+            font-size: 60px;
+            margin: 20px 0;
+        }
+
+        .photo-container {
+            margin: 20px 0;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid #ff6b9d;
+            box-shadow: 0 10px 30px rgba(214, 52, 71, 0.3);
+            animation: photoFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes photoFloat {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .couple-photos {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .couple-photo {
+            width: 250px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 20px;
+            border: 4px solid #ff6b9d;
+            box-shadow: 0 10px 30px rgba(214, 52, 71, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .couple-photo:hover {
+            transform: scale(1.05) rotate(2deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="heart" style="left: 10%; animation-delay: 0s;">💕</div>
+    <div class="heart" style="left: 20%; animation-delay: 2s;">❤️</div>
+    <div class="heart" style="left: 30%; animation-delay: 4s;">💖</div>
+    <div class="heart" style="left: 40%; animation-delay: 1s;">💗</div>
+    <div class="heart" style="left: 50%; animation-delay: 3s;">💕</div>
+    <div class="heart" style="left: 60%; animation-delay: 5s;">❤️</div>
+    <div class="heart" style="left: 70%; animation-delay: 2.5s;">💖</div>
+    <div class="heart" style="left: 80%; animation-delay: 4.5s;">💗</div>
+    <div class="heart" style="left: 90%; animation-delay: 1.5s;">💕</div>
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="https://cdn.pixabay.com/audio/2022/03/10/audio_4a468ed3f6.mp3" type="audio/mpeg">
+    </audio>
+
+    <!-- Music Control Button -->
+    <button id="musicToggle" style="position: fixed; top: 20px; right: 20px; z-index: 1000; background: rgba(255, 255, 255, 0.9); border: none; border-radius: 50%; width: 50px; height: 50px; cursor: pointer; font-size: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">🔊</button>
+
+    <div class="container">
+        <!-- Question Page -->
+        <div id="questionPage">
+            <div class="photo-container">
+                <img src="photo1.jpg" alt="Savita" class="profile-photo">
+            </div>
+            <div class="heart-icon">💖</div>
+            <h1>Will You Be My Valentine?</h1>
+            <p>My Dearest Savita,<br>Would you make this day special?</p>
+            
+            <div class="button-container">
+                <button id="yesBtn">Yes! 💕</button>
+                <button id="noBtn">No</button>
+            </div>
+        </div>
+
+        <!-- Love Page -->
+        <div id="lovePage" class="love-page">
+            <div class="celebration">🎉💖🎉</div>
+            <h1>Yay!</h1>
+            <div class="couple-photos">
+                <img src="photo2.jpg" alt="Us Together" class="couple-photo">
+                <img src="photo3.jpg" alt="Us Together" class="couple-photo">
+            </div>
+            <p class="love-message">
+                I Love You Savita! ❤️<br>
+                <span class="thank-you">Thank you so much for being my Valentine!</span>
+            </p>
+            <div class="celebration">💕✨💕</div>
+        </div>
+    </div>
+
+    <script>
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+        const questionPage = document.getElementById('questionPage');
+        const lovePage = document.getElementById('lovePage');
+
+        // When Yes is clicked
+        yesBtn.addEventListener('click', function() {
+            questionPage.style.display = 'none';
+            lovePage.style.display = 'block';
+        });
+
+        // When mouse gets near No button, move it away
+        noBtn.addEventListener('mouseenter', function() {
+            moveButton();
+        });
+
+        // Also move on click attempt
+        noBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            moveButton();
+        });
+
+        function moveButton() {
+            const container = document.querySelector('.button-container');
+            const containerRect = container.getBoundingClientRect();
+            
+            // Get random position within container bounds
+            const maxX = containerRect.width - noBtn.offsetWidth;
+            const maxY = containerRect.height - noBtn.offsetHeight;
+            
+            let newX = Math.random() * maxX;
+            let newY = Math.random() * maxY;
+            
+            noBtn.style.left = newX + 'px';
+            noBtn.style.top = newY + 'px';
+        }
+
+        // Set initial position for No button
+        window.addEventListener('load', function() {
+            noBtn.style.left = '250px';
+            noBtn.style.top = '0px';
+        });
+
+        // Music control
+        const bgMusic = document.getElementById('bgMusic');
+        const musicToggle = document.getElementById('musicToggle');
+        let isPlaying = false;
+
+        // Auto-play music when page loads (with user interaction)
+        document.body.addEventListener('click', function() {
+            if (!isPlaying) {
+                bgMusic.play();
+                isPlaying = true;
+                musicToggle.textContent = '🔊';
+            }
+        }, { once: true });
+
+        // Toggle music on/off
+        musicToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            if (isPlaying) {
+                bgMusic.pause();
+                musicToggle.textContent = '🔇';
+                isPlaying = false;
+            } else {
+                bgMusic.play();
+                musicToggle.textContent = '🔊';
+                isPlaying = true;
+            }
+        });
+    </script>
+</body>
+</html>
