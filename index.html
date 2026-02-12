@@ -124,7 +124,9 @@
             background: linear-gradient(135deg, #e0e0e0, #bdbdbd);
             color: #666;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-            position: absolute;
+            position: fixed;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
 
         .love-message {
@@ -273,24 +275,27 @@
         });
 
         function moveButton() {
-            const container = document.querySelector('.button-container');
-            const containerRect = container.getBoundingClientRect();
+            // Get viewport dimensions
+            const maxX = window.innerWidth - noBtn.offsetWidth - 20;
+            const maxY = window.innerHeight - noBtn.offsetHeight - 20;
             
-            // Get random position within container bounds
-            const maxX = containerRect.width - noBtn.offsetWidth;
-            const maxY = containerRect.height - noBtn.offsetHeight;
-            
+            // Generate random position anywhere on the screen
             let newX = Math.random() * maxX;
             let newY = Math.random() * maxY;
+            
+            // Ensure minimum distance from current position for better effect
+            newX = Math.max(20, newX);
+            newY = Math.max(20, newY);
             
             noBtn.style.left = newX + 'px';
             noBtn.style.top = newY + 'px';
         }
 
-        // Set initial position for No button
+        // Set initial position for No button (centered near Yes button)
         window.addEventListener('load', function() {
-            noBtn.style.left = '250px';
-            noBtn.style.top = '0px';
+            const yesRect = yesBtn.getBoundingClientRect();
+            noBtn.style.left = (yesRect.right + 30) + 'px';
+            noBtn.style.top = yesRect.top + 'px';
         });
 
         // Music control
